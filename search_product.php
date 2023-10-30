@@ -57,7 +57,7 @@ include("./functions/common_function.php");
                             <a class="nav-link" href="#">Total Price:100/-</a>
                         </li>
                     </ul>
-                    <form class="d-flex" action="search_product.php" method="get">
+                    <form class="d-flex" action="" method="get">
                         <input class="form-control me-2" type="search" placeholder="Search" name="search_data"
                             aria-label="Search">
                         <input type="submit" value="Submit" name="search_data_product" class="btn btn-outline-light">
@@ -90,11 +90,12 @@ include("./functions/common_function.php");
                 <div class="row">
                     <!-- fetching products -->
                     <?php
-                    displayProducts();
                     //  calling products by category
                     displayUniqueCategory();
                     // calling products by brands
                     displayUniqueBrand();
+                    // calling searching prodcut
+                    displaySearchProduct();
                     ?>
                 </div>
             </div>
