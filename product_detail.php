@@ -39,10 +39,11 @@ include("./functions/common_function.php");
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/ecommerce-php-mysql/">Home</a>
+                            <a class="nav-link active" aria-current="page"
+                                href="/ecommerce-php-mysql/index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
@@ -57,7 +58,7 @@ include("./functions/common_function.php");
                             <a class="nav-link" href="#">Total Price:100/-</a>
                         </li>
                     </ul>
-                    <form class="d-flex" action="" method="get">
+                    <form class="d-flex" action="search_product.php" method="get">
                         <input class="form-control me-2" type="search" placeholder="Search" name="search_data"
                             aria-label="Search">
                         <input type="submit" value="Submit" name="search_data_product" class="btn btn-outline-light">
@@ -92,12 +93,12 @@ include("./functions/common_function.php");
                     <?php
                     //add to cart
                     addToCart();
+                    //display related products
+                    displayRelatedProducts();
                     //  calling products by category
                     displayUniqueCategory();
                     // calling products by brands
                     displayUniqueBrand();
-                    // calling searching prodcut
-                    displaySearchProduct();
                     ?>
                 </div>
             </div>
@@ -134,9 +135,10 @@ include("./functions/common_function.php");
     </div>
 
     <!-- last child -->
-    <!-- <div class="bg-info p-3 text-center">
-        <p>All Rights Reserved &copy;- 2023</p>
-    </div> -->
+    <!-- include footer -->
+    <?php
+    include("./includes/footer.php");
+    ?>
 
     <!-- bootstrap JS link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

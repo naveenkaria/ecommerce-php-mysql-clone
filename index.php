@@ -39,10 +39,11 @@ include("./functions/common_function.php");
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link active" aria-current="page"
+                                href="/ecommerce-php-mysql/index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Register</a>
@@ -90,6 +91,9 @@ include("./functions/common_function.php");
                 <div class="row">
                     <!-- fetching products -->
                     <?php
+                    //add to cart
+                    addToCart();
+                    //display all products
                     displayProducts();
                     //  calling products by category
                     displayUniqueCategory();
@@ -131,9 +135,10 @@ include("./functions/common_function.php");
     </div>
 
     <!-- last child -->
-    <!-- <div class="bg-info p-3 text-center">
-        <p>All Rights Reserved &copy;- 2023</p>
-    </div> -->
+    <!-- include footer -->
+    <?php
+    include("./includes/footer.php");
+    ?>
 
     <!-- bootstrap JS link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
