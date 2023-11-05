@@ -52,23 +52,13 @@ include("./functions/common_function.php");
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i>
+                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>
                                 <sup>
                                     <?php cart_item() ?>
                                 </sup>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Total Price:
-                                <?php total_cart_price(); ?>/-
-                            </a>
-                        </li>
                     </ul>
-                    <form class="d-flex" action="search_product.php" method="get">
-                        <input class="form-control me-2" type="search" placeholder="Search" name="search_data"
-                            aria-label="Search">
-                        <input type="submit" value="Submit" name="search_data_product" class="btn btn-outline-light">
-                    </form>
                 </div>
             </div>
         </nav>
@@ -90,54 +80,43 @@ include("./functions/common_function.php");
         </div>
 
         <!-- fourth child -->
+        <div class="container">
+            <div class="row">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>Product Title</th>
+                            <th>Product Image</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Remove</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apple</td>
+                            <td><img src="./images/apple.png" alt="apple"></td>
+                            <td><input type="text" name="" id=""></td>
+                            <td>9000</td>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                <p>Update</p>
+                                <p>Remove</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        <div class="row px-1">
-            <div class="col-md-10">
-                <!-- products -->
-                <div class="row">
-                    <!-- fetching products -->
-                    <?php
-                    //add to cart
-                    addToCart();
-                    //display all products
-                    displayProducts();
-                    //  calling products by category
-                    displayUniqueCategory();
-                    // calling products by brands
-                    displayUniqueBrand();
-                    ?>
+                <!-- subtotal -->
+                <div class="d-flex mb-5">
+                    <h4 class="px-3">Subtotal:<strong class="text-info">5000/-</strong></h4>
+                    <a href="index.php"><button class="bg-info px-3 py-2 border-0 mx-3">Continue Shopping</button></a>
+                    <a href="#"><button class="bg-secondary px-3 py-2 border-0 text-light">checkout</button></a>
                 </div>
-            </div>
-            <div class="col-md-2 bg-secondary p-0">
-                <!-- sidenav -->
-
-                <!-- brands display -->
-                <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-info">
-                        <a href="index.php" class="nav-link text-light">
-                            <h4>Delivery Brands</h4>
-                        </a>
-                    </li>
-                    <?php
-                    displayBrands();
-                    ?>
-                </ul>
-
-                <!-- category display -->
-                <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-info">
-                        <a href="index.php" class="nav-link text-light">
-                            <h4>Categories</h4>
-                        </a>
-                    </li>
-                    <?php
-                    displayCategories();
-                    ?>
-                </ul>
 
             </div>
         </div>
-
     </div>
 
     <!-- last child -->
