@@ -19,7 +19,7 @@ include("../includes/connect.php");
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- custom CSS -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../style.css">
 
 </head>
 
@@ -29,7 +29,7 @@ include("../includes/connect.php");
         <!-- first child -->
         <nav class="navbar navbar-expand-lg bg-info">
             <div class="container-fluid">
-                <img class="logo" src="./images/logo.png" alt="logo">
+                <img class="logo" src="../images/logo.png" alt="logo">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +45,7 @@ include("../includes/connect.php");
                             <a class="nav-link" href="display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link" href="user_registration.php">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -65,7 +65,7 @@ include("../includes/connect.php");
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link" href="#">Welcome Guest</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="user_login.php">Login</a></li>
             </ul>
         </nav>
 
@@ -86,7 +86,7 @@ include("../includes/connect.php");
                     if (!isset($_GET['checkout'])) {
                         include('user_login.php');
                     } else {
-                        include('../payment.php');
+                        include('payment.php');
                     }
                     ?>
                 </div>

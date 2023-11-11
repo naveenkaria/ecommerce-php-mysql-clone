@@ -1,3 +1,7 @@
+<?php
+include('../includes/connect.php');
+include("../functions/common_function.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +21,12 @@
 
 </head>
 
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
+
 <body>
     <div class="container-fluid my-3">
         <h1 class="text-center">User Login</h1>
@@ -24,9 +34,9 @@
             <div class="col-lg-12 col-xl-6">
                 <form action="" method="post">
                     <div class="form-outline mb-4">
-                        <label for="user_username">Username</label>
-                        <input type="text" name="user_username" id="user_username" class="form-control"
-                            placeholder="Enter your username" autocomplete="off" required>
+                        <label for="user_email">Email</label>
+                        <input type="email" name="user_email" id="user_email" class="form-control"
+                            placeholder="Enter your email" autocomplete="off" required>
                     </div>
                     <div class="form-outline mb-4">
                         <label for="user_password">Password</label>
@@ -46,3 +56,43 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['user_login'])) {
+    global $conn;
+
+    $user_email = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    $user_ip = getIpAddress();
+
+    $select_query = "Select * from `user_table` where user_email = '$user_email'";
+    $result = mysqli_query($conn, $select_query);
+    $row_count = mysqli_num_rows($result);
+    $row_data = mysqli_fetch_assoc($result);
+
+    //cart items select
+    $select_query_cart = "Select * from `cart_details` where ip_address = '$user_ip'";
+    $select_cart = mysqli_query($conn, $select_query_cart);
+    $row_count_cart = mysqli_num_rows($select_cart);
+    if ($row_count > 0) {
+        $_SESSION['username'] = $row_data['user_name'];
+        if (password_verify($user_password, $row_data["user_password"])) {
+            if ($row_count == 1 and $row_count_cart == 0) {
+                $_SESSION['username'] = $row_data['user_name'];
+                echo "<script>alert('Login Successfull')</script>";
+                echo "<script>window.open('profile.php','_self')</script>";
+            } else {
+                $_SESSION['username'] = $row_data['user_name'];
+                echo "<script>alert('Login Successfull')</script>";
+                echo "<script>window.open('payment.php','_self')</script>";
+            }
+        } else {
+            echo "<script>alert('Invalid Credentials')</script>";
+        }
+    } else {
+        echo "<script>alert('Invalid Credentials')</script>";
+    }
+}
+
+
+?>

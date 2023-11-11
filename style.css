@@ -1,15 +1,15 @@
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .logo {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .admin_image{
-    width: 100px;
-    object-fit: contain;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.admin_image{
+  width: 100px;
+  object-fit: contain;
+}
