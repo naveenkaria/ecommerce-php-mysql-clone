@@ -1,6 +1,7 @@
 <?php
 include('../includes/connect.php');
 include("../functions/common_function.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +21,12 @@ include("../functions/common_function.php");
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
 
 <body>
     <div class="container-fluid my-3">
@@ -114,7 +121,7 @@ if (isset($_POST['user_register'])) {
     $result_cart = mysqli_query($conn, $select_cart_items);
     $row_count = mysqli_num_rows($result_cart);
     if ($row_count > 0) {
-        $_SESSION['username'] = $user_name;
+        $_SESSION['user_name'] = $user_name;
         echo "<script>alert('You have items in your cart')</script>";
         echo "<script>window.open('checkout.php', '_self')</script>";
     } else {

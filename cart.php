@@ -1,6 +1,7 @@
 <?php
 include("./includes/connect.php");
 include("./functions/common_function.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +24,12 @@ include("./functions/common_function.php");
     <link rel="stylesheet" href="./style.css">
 
 </head>
+
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
 
 <body>
     <!-- navbar -->
@@ -52,7 +59,7 @@ include("./functions/common_function.php");
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>
+                            <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i>
                                 <sup>
                                     <?php cart_item() ?>
                                 </sup>
@@ -67,8 +74,18 @@ include("./functions/common_function.php");
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Welcome Guest</a></li>
-                <li class="nav-item"><a class="nav-link" href="./user_area/user_login.php">Login</a></li>
+                <?php
+                if (!isset($_SESSION['user_name'])) {
+                    echo " <li class='nav-item'><a class='nav-link' href='#'>Welcome Guest</a></li>";
+                } else {
+                    echo " <li class='nav-item'><a class='nav-link' href='#'>Welcome " . $_SESSION['user_name'] . "</a></li>";
+                }
+                if (!isset($_SESSION['user_name'])) {
+                    echo "<li class='nav-item'><a class='nav-link' href='./user_area/user_login.php'>Login</a></li>";
+                } else {
+                    echo "<li class='nav-item'><a class='nav-link' href='./user_area/logout.php'>Logout</a></li>";
+                }
+                ?>
             </ul>
         </nav>
 

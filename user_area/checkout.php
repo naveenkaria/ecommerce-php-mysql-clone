@@ -1,5 +1,6 @@
 <?php
 include("../includes/connect.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +24,12 @@ include("../includes/connect.php");
 
 </head>
 
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
+
 <body>
     <!-- navbar -->
     <div class="container-fluid p-0">
@@ -42,7 +49,7 @@ include("../includes/connect.php");
                                 href="/ecommerce-php-mysql/index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="display_all.php">Products</a>
+                            <a class="nav-link" href="../display_all.php">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="user_registration.php">Register</a>
@@ -64,8 +71,18 @@ include("../includes/connect.php");
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Welcome Guest</a></li>
-                <li class="nav-item"><a class="nav-link" href="user_login.php">Login</a></li>
+                <?php
+                if (!isset($_SESSION['user_name'])) {
+                    echo " <li class='nav-item'><a class='nav-link' href='#'>Welcome Guest</a></li>";
+                } else {
+                    echo " <li class='nav-item'><a class='nav-link' href='#'>Welcome " . $_SESSION['user_name'] . "</a></li>";
+                }
+                if (!isset($_SESSION['user_name'])) {
+                    echo "<li class='nav-item'><a class='nav-link' href='user_login.php'>Login</a></li>";
+                } else {
+                    echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
+                }
+                ?>
             </ul>
         </nav>
 
@@ -83,7 +100,7 @@ include("../includes/connect.php");
                 <!-- products -->
                 <div class="row">
                     <?php
-                    if (!isset($_GET['checkout'])) {
+                    if (!isset($_GET['checkout']) and !isset($_SESSION['user_name'])) {
                         include('user_login.php');
                     } else {
                         include('payment.php');
