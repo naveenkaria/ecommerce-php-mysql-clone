@@ -46,14 +46,18 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/ecommerce-php-mysql/">Home</a>
+                            <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./user_area/user_registration.php">Register</a>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['user_name'])) {
+                            echo "<li class='nav-item'><a class='nav-link' href='./user_area/profile.php'>My Account</a>";
+                        } else {
+                            echo "<li class='nav-item'><a class='nav-link' href='./user_area/user_registration.php'>Register</a></li>";
+                        }
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>

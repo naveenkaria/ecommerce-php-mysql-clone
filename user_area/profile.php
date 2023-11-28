@@ -46,15 +46,18 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                                href="../ecommerce-php-mysql/index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../display_all.php">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../user_area/user_registration.php">Register</a>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['user_name'])) {
+                            echo "<li class='nav-item'><a class='nav-link' href='./user_area/profile.php'>My Account</a>";
+                        } else {
+                            echo "<li class='nav-item'><a class='nav-link' href='./user_area/user_registration.php'>Register</a></li>";
+                        }
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
@@ -141,9 +144,18 @@ session_start();
                     <li class='nav-item'><a href='profile.php?delete_account' class='nav-link text-light'>Delete
                             Account</a></li>
                     <li class='nav-item'><a href='logout.php' class='nav-link text-light'>Logout</a></li>
-
                 </ul>
-
+            </div>
+            <div class='col-md-10 text-center'>
+                <?php
+                get_user_order_details();
+                if (isset($_GET['edit_account'])) {
+                    include('edit_account.php');
+                }
+                if (isset($_GET['my_orders'])) {
+                    include('user_orders.php');
+                }
+                ?>
             </div>
         </div>
 
