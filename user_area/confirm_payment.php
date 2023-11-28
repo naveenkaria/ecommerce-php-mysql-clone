@@ -2,6 +2,33 @@
 include("../includes/connect.php");
 include("../functions/common_function.php");
 session_start();
+
+global $conn;
+
+if (isset($_GET['order_id'])) {
+    $order_id = $_GET['order_id'];
+    $select_query = "Select * from `user_orders` where order_id=$order_id";
+    $result = mysqli_query($conn, $select_query);
+    $row_fetch = mysqli_fetch_assoc($result);
+    $invoice_number = $row_fetch['invoice_number'];
+    $amount_due = $row_fetch['amount_due'];
+}
+
+if (isset($_POST['confirm_payment'])) {
+    $invoice_number = $_POST['invoice_number'];
+    $amount = $_POST['amount'];
+    $payment_mode = $_POST['payment_mode'];
+    $insert_query = "insert into `user_payments` (order_id, invoice_number, amount, payment_mode,date) 
+                     values ($order_id, $invoice_number,$amount,'$payment_mode',NOW())";
+    $result = mysqli_query($conn, $insert_query);
+    if ($result) {
+        echo "<h3 class='text-center text-light'>Successfully completed the payment</h3>";
+        echo "<script>window.open('profile.php?my_orders', '_self')</script>";
+    }
+    $update_query = "update `user_orders` set order_status = 'Complete' where order_id = $order_id";
+    $result = mysqli_query($conn, $update_query);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +49,12 @@ session_start();
         <h1 class="text-center text-light">Confirm Payment</h1>
         <form action="" method="post">
             <div class='form-outline my-4 text-center w-50 m-auto'>
-                <input type="text" class='form-control w-50 m-auto' name='invoice_number'>
+                <input type="text" class='form-control w-50 m-auto' name='invoice_number'
+                    value='<?php echo $invoice_number ?>'>
             </div>
             <div class='form-outline my-4 text-center w-50 m-auto'>
                 <label for="" class='text-light'>Amount</label>
-                <input type="text" class='form-control w-50 m-auto' name='amount'>
+                <input type="text" class='form-control w-50 m-auto' name='amount' value='<?php echo $amount_due ?>'>
             </div>
             <div class='form-outline my-4 text-center w-50 m-auto'>
                 <select name="payment_mode" class='form-select w-50 m-auto'>
