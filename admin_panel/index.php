@@ -1,3 +1,8 @@
+<?php
+include("../includes/connect.php");
+include("../functions/common_function.php");
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +24,16 @@
     <link rel="stylesheet" href="../style.css">
 
 </head>
+<style>
+    body {
+        overflow-x: hidden;
+    }
+
+    .product_img {
+        width: 60px;
+        object-fit: contain;
+    }
+</style>
 
 <body>
 
@@ -55,7 +70,7 @@
                         <a href="insert_product.php" class="nav-link text-light  m-3"> Insert Products</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">View Products</a>
+                        <a href="index.php?view_products" class="nav-link text-light  m-3">View Products</a>
                     </button>
                     <button class="bg-info">
                         <a href="index.php?insert_categories" class="nav-link text-light  m-3">Insert Categories</a>
@@ -96,11 +111,18 @@
         if (isset($_GET['insert_brands'])) {
             include('insert_brands.php');
         }
+        if (isset($_GET['view_products'])) {
+            include('view_products.php');
+        }
         ?>
     </div>
 
 
-
+    <!-- last child -->
+    <!-- include footer -->
+    <?php
+    include("../includes/footer.php");
+    ?>
 
 
 
