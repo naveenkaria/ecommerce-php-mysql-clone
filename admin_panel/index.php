@@ -117,6 +117,9 @@ session_start();
         if (isset($_GET['edit_products'])) {
             include('edit_products.php');
         }
+        if (isset($_GET['delete_products'])) {
+            include('delete_products.php');
+        }
         ?>
     </div>
 
