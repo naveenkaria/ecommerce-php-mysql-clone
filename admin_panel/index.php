@@ -76,13 +76,13 @@ session_start();
                         <a href="index.php?insert_categories" class="nav-link text-light  m-3">Insert Categories</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">View Categories</a>
+                        <a href="index.php?view_categories" class="nav-link text-light  m-3">View Categories</a>
                     </button>
                     <button class="bg-info">
                         <a href="index.php?insert_brands" class="nav-link text-light m-3">Insert Brands</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">View Brands</a>
+                        <a href="index.php?view_brands" class="nav-link text-light  m-3">View Brands</a>
                     </button>
                     <button class="bg-info">
                         <a href="#" class="nav-link text-light  m-3">All Orders</a>
@@ -119,6 +119,12 @@ session_start();
         }
         if (isset($_GET['delete_products'])) {
             include('delete_products.php');
+        }
+        if (isset($_GET['view_categories'])) {
+            include('view_categories.php');
+        }
+        if (isset($_GET['view_brands'])) {
+            include('view_brands.php');
         }
         ?>
     </div>
