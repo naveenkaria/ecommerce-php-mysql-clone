@@ -25,7 +25,8 @@
                 <td>
                     <?php echo $brand_title; ?>
                 </td>
-                <td><a href="#" class='text-dark'><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href="index.php?edit_brand=<?php echo $brand_id ?>" class='text-dark'><i
+                            class="fa-solid fa-pen-to-square"></i></a></td>
                 <td><a href="#" class='text-dark'><i class="fa-solid fa-trash"></i></a></td>
             </tr>
         <?php } ?>
