@@ -132,6 +132,12 @@ session_start();
         if (isset($_GET['edit_brand'])) {
             include('edit_brand.php');
         }
+        if (isset($_GET['delete_category'])) {
+            include('delete_category.php');
+        }
+        if (isset($_GET['delete_brand'])) {
+            include('delete_brand.php');
+        }
         ?>
     </div>
 
