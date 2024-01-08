@@ -88,7 +88,7 @@ session_start();
                         <a href="index.php?view_brands" class="nav-link text-light  m-3">View Brands</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">All Orders</a>
+                        <a href="index.php?list_orders" class="nav-link text-light  m-3">All Orders</a>
                     </button>
                     <button class="bg-info">
                         <a href="#" class="nav-link text-light  m-3">All Payments</a>
@@ -140,6 +140,9 @@ session_start();
         }
         if (isset($_GET['delete_brand'])) {
             include('delete_brand.php');
+        }
+        if (isset($_GET['list_orders'])) {
+            include('list_orders.php');
         }
         ?>
     </div>
