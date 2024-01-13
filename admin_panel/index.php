@@ -1,6 +1,4 @@
 <?php
-include("../includes/connect.php");
-include("../functions/common_function.php");
 session_start();
 ?>
 <!DOCTYPE html>
@@ -46,10 +44,14 @@ session_start();
             <div class="container-fluid">
                 <img class="logo" src="../images/logo.png" alt="logo">
                 <div class="navbar navbar-expand-lg">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Welcome guest</a>
-                        </li>
+                    <ul>
+                        <?php
+                        if (!isset($_SESSION['session_admin_name'])) {
+                            echo " <li class='nav-item'><a class='nav-link' href='#'>Welcome Guest</a></li>";
+                        } else {
+                            echo " <li class='nav-item'><a class='nav-link' href='#'>Welcome " . $_SESSION['session_admin_name'] . "</a></li>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -65,7 +67,13 @@ session_start();
             <div class="col-md-12 bg-secondary p-1 d-flex align-items-center">
                 <div class="m-3">
                     <a href="#"><img class="admin_image" src="../images/logo.png" alt="logo"></a>
-                    <p class="text-light text-center">Admin Name</p>
+                    <?php
+                    if (!isset($_SESSION['session_admin_name'])) {
+                        echo "<p class='text-light text-center'>Admin Name</p>";
+                    } else {
+                        echo "<p class='text-light text-center'>" . $_SESSION['session_admin_name'] . "</p>";
+                    }
+                    ?>
                 </div>
                 <!-- buttons -->
                 <div class="button text-center">
@@ -91,13 +99,13 @@ session_start();
                         <a href="index.php?list_orders" class="nav-link text-light  m-3">All Orders</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">All Payments</a>
+                        <a href="index.php?list_payments" class="nav-link text-light  m-3">All Payments</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">List Users</a>
+                        <a href="index.php?list_users" class="nav-link text-light  m-3">List Users</a>
                     </button>
                     <button class="bg-info">
-                        <a href="#" class="nav-link text-light  m-3">Logout</a>
+                        <a href="index.php?logout" class="nav-link text-light  m-3">Logout</a>
                     </button>
                 </div>
             </div>
@@ -143,6 +151,15 @@ session_start();
         }
         if (isset($_GET['list_orders'])) {
             include('list_orders.php');
+        }
+        if (isset($_GET['list_payments'])) {
+            include('list_payments.php');
+        }
+        if (isset($_GET['list_users'])) {
+            include('list_users.php');
+        }
+        if (isset($_GET['logout'])) {
+            include('logout.php');
         }
         ?>
     </div>
